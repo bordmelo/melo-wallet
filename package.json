@@ -1,0 +1,26 @@
+{
+  "name": "melo-wallet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier --write \"./{src,client/src}/**/*.{js,scss}\"",
+    "lint": "eslint --fix \"./{src,client/src}/**/*.js\"",
+    "start": "node src/index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "9.x.x"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-node": "^10.0.0",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
