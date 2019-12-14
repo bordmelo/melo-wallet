@@ -1,27 +1,22 @@
+const ForestAdmin = require('forest-express-sequelize');
+const { sequelize } = require('./models');
+const secret = require('../config/secret');
 const path = require('path');
 const express = require('express');
 
 const app = express();
 
-// static files
-app.use(express.static(__dirname + '/public'));
+app.use(
+  ForestAdmin.init({
+    modelsDir: path.resolve('./src/models'),
+    envSecret: secret.FOREST_ENV_SECRET,
+    authSecret: secret.FOREST_AUTH_SECRET,
+    sequelize
+  })
+);
+
+// // static files
+// app.use(express.static(__dirname + '/public'));
 
 // start server
 app.listen(process.env.PORT || 5000);
-
-const { Broker, Investment, Transaction, BalanceUpdate } = require('./models');
-
-const test = async () => {
-  // select all
-  const brokerWithDetails = await Broker.findOne({
-    include: [
-      {
-        model: Investment,
-        include: [{ model: Transaction }, { model: BalanceUpdate }]
-      }
-    ]
-  });
-  console.log(JSON.stringify(brokerWithDetails));
-};
-
-test();
